@@ -24,3 +24,21 @@ impl Config {
         Ok(Self { query, filename })
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use std::vec;
+
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.'
+Pick three.";
+
+        assert_eq!(vec!["safe, faset, productive."], search(query, contents))
+    }
+}
