@@ -3,7 +3,9 @@ use std::{fs, io};
 pub fn run(config: Config) -> io::Result<()> {
     let contents = fs::read_to_string(config.filename)?;
 
-    println!("With test:\n{contents}");
+    for line in search(&config.query, &contents) {
+        println!("{line}")
+    }
 
     Ok(())
 }
